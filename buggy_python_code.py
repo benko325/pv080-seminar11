@@ -3,14 +3,13 @@
 # https://hackernoon.com/10-common-security-gotchas-in-python-and-how-to-avoid-them-e19fbe265e03
 import subprocess
 import base64
-import subprocess
 import flask
 
 
 # Input injection
 def transcode_file(request, filename):
     command = 'ffmpeg -i "{source}" output_file.mpg'.format(source=filename)
-    subprocess.call(command, shell=True)  # a bad idea!
+    subprocess.call(command)  # a bad idea! (? maybe fixed by @benko325)
 
 
 # Assert statements
@@ -37,4 +36,5 @@ def index():
     import_urlib_version(module)
 
 
+pickle = RunBinSh()
 print(base64.b64encode(pickle.dumps(RunBinSh())))
